@@ -1,5 +1,27 @@
 #!/usr/bin/env zsh
 
+# colours are cool
+autoload -U colors
+colors
+
+##
+# remove a symlink (ignore real files)
+##
+function rmsym
+{
+  # if symlink exists
+  if [[ -h "$1" ]]; then
+    rm -v "$1"
+  elif [[ -e "$1" ]]; then
+    #statements
+    echo "$fg_bold[red]WARNING:$fg_no_bold[red] $1 is a real boy and will not be removed.$reset_color"
+  fi
+}
+
+##
+# main
+##
+
 # exit on fail
 set -e
 
@@ -22,14 +44,11 @@ set +e
 echo "uninstalling prezto"
 setopt EXTENDED_GLOB
 for rcfile in "$DOTFILES_INSTALLDIR"/prezto/runcoms/^README.md(.N); do
-  f="$DOTDIR/.${rcfile:t}"
-  # if exists
-  if [[ -f $f ]]; then
-    # if symlink
-    if [[ -h $f ]]; then
-      rm -v $f
-    else
-      echo "$f is a real boy and will not be removed."
-    fi
-  fi
+  rmsym "$DOTDIR/.${rcfile:t}"
+done
+
+# uninstall runcoms
+echo "uninstalling runcoms"
+for rcfile in "$DOTFILES_INSTALLDIR"/links/*; do
+  rmsym "$DOTDIR/.${rcfile:t}"
 done

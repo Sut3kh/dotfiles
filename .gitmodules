@@ -1,3 +1,12 @@
 [submodule "prezto"]
 	path = prezto
 	url = git@github.com:Sut3kh/prezto.git
+[submodule "links/vim/bundle/vim-pathogen"]
+	path = links/vim/bundle/vim-pathogen
+	url = git@github.com:tpope/vim-pathogen.git
+[submodule "links/vim/bundle/vim-sensible"]
+	path = links/vim/bundle/vim-sensible
+	url = git://github.com/tpope/vim-sensible.git
+[submodule "links/vim/bundle/vim-git"]
+	path = links/vim/bundle/vim-git
+	url = git@github.com:tpope/vim-git.git

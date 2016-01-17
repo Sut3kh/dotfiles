@@ -30,5 +30,11 @@ for rcfile in "$DOTFILES_INSTALLDIR"/prezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "$DOTDIR/.${rcfile:t}"
 done
 
+# install runcoms
+echo "installing runcoms"
+for rcfile in "$DOTFILES_INSTALLDIR"/links/*; do
+  ln -s "$rcfile" "$DOTDIR/.${rcfile:t}"
+done
+
 # change shell to zsh
 chsh -s /bin/zsh
