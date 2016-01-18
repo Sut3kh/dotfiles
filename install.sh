@@ -37,7 +37,15 @@ done
 # install runcoms
 echo "installing runcoms"
 for rcfile in "$DOTFILES_INSTALLDIR"/links/*; do
-  ln -s "$rcfile" "$DOTDIR/.${rcfile:t}"
+  f="$DOTDIR/.${rcfile:t}"
+
+  # if symlink exists but points to a directory, a symlink will be added inside
+  # recursively
+  if [[ -h "$f" ]]; then
+    echo "$f already exists"
+  else
+    ln -s "$rcfile" "$f"
+  fi
 done
 
 # change shell to zsh
