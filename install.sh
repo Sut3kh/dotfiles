@@ -19,6 +19,24 @@ function dotfiles_init()
   echo "DOTFILES_INSTALLDIR=$DOTFILES_INSTALLDIR" > "$DOTDIR/.my-dotfiles.env"
 }
 
+##
+# create a symlink (if the path doesnt already exist)
+##
+function lnsafe()
+{
+  # if symlink exists but points to a directory, symlink would be added inside
+  if [[ -e $2 ]]; then
+    echo "$fg[magenta]WARNING:$reset_color $2 already exists"
+  else
+    echo "linking $2 -> $1"
+    ln -s $1 $2
+  fi
+}
+
+##
+# Main
+##
+
 # allow local install path (i.e. for dev)
 if [[ $1 = '--local' ]]; then
   DOTFILES_INSTALLDIR="$(cd "$(dirname "$0")"; pwd -P)"
@@ -49,24 +67,16 @@ set +e
 
 # install prezto
 echo "installing prezto"
-ln -s "$DOTFILES_INSTALLDIR"/prezto "$DOTDIR/.zprezto"
+lnsafe "$DOTFILES_INSTALLDIR"/prezto "$DOTDIR/.zprezto"
 setopt EXTENDED_GLOB
 for rcfile in "$DOTFILES_INSTALLDIR"/prezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "$DOTDIR/.${rcfile:t}"
+  lnsafe "$rcfile" "$DOTDIR/.${rcfile:t}"
 done
 
 # install runcoms
 echo "installing runcoms"
 for rcfile in "$DOTFILES_INSTALLDIR"/links/*; do
-  f="$DOTDIR/.${rcfile:t}"
-
-  # if symlink exists but points to a directory, a symlink will be added inside
-  # recursively
-  if [[ -h "$f" ]]; then
-    echo "$f already exists"
-  else
-    ln -s "$rcfile" "$f"
-  fi
+  lnsafe "$rcfile" "$DOTDIR/.${rcfile:t}"
 done
 
 # change shell to zsh
