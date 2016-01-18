@@ -29,6 +29,7 @@ set +e
 
 # install prezto
 echo "installing prezto"
+ln -s "$DOTFILES_INSTALLDIR"/prezto "$DOTDIR/.zprezto"
 setopt EXTENDED_GLOB
 for rcfile in "$DOTFILES_INSTALLDIR"/prezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "$DOTDIR/.${rcfile:t}"

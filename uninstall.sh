@@ -42,6 +42,7 @@ set +e
 
 # uninstall prezto
 echo "uninstalling prezto"
+rmsym "$DOTDIR/.zprezto"
 setopt EXTENDED_GLOB
 for rcfile in "$DOTFILES_INSTALLDIR"/prezto/runcoms/^README.md(.N); do
   rmsym "$DOTDIR/.${rcfile:t}"
