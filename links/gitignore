@@ -1,0 +1,8 @@
+# OS meta files
+.DS_Store
+Desktop.ini
+Thumbs.db
+*.dropbox.attr
+
+# ctags
+.tags
