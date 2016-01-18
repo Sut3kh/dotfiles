@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+# colours are cool
+autoload -U colors
+colors
+
 # exit on fail
 set -e
 
@@ -38,3 +42,15 @@ done
 
 # change shell to zsh
 chsh -s /bin/zsh
+
+# osx only
+if [[ $OSTYPE = darwin* ]]; then
+  # run osx script (needs to be the last command as it will exit terminal)
+  echo
+  read "REPLY?Would you like to run the osx setup script?
+$fg_bold[red]WARNING:$reset_color terminal and other applications will exit on completion! (y/n):";
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		"$DOTFILES_INSTALLDIR"/scripts/osx.sh
+	fi;
+fi
