@@ -9,19 +9,27 @@ set -e
 
 DOTDIR=${ZDOTDIR:-$HOME}
 
-# allow custom install path (i.e. for dev)
+##
+# init dotfiles installation (create .my-dotfiles.env) from $DOTFILES_INSTALLDIR
+##
+function dotfiles_init()
+{
+  # create .env
+  echo "installing dotfiles into $DOTFILES_INSTALLDIR"
+  echo "DOTFILES_INSTALLDIR=$DOTFILES_INSTALLDIR" > "$DOTDIR/.my-dotfiles.env"
+}
+
+# allow local install path (i.e. for dev)
 if [[ $1 = '--local' ]]; then
   DOTFILES_INSTALLDIR="$(cd "$(dirname "$0")"; pwd -P)"
+  dotfiles_init
 # check for existing installation
 elif [[ -f "$DOTDIR/.my-dotfiles.env" ]]; then
   source "$DOTDIR/.my-dotfiles.env"
 # init
 else
   DOTFILES_INSTALLDIR=${DOTFILES_INSTALLDIR:-$DOTDIR/.my-dotfiles}
-
-  # create .env
-  echo "installing dotfiles into $DOTFILES_INSTALLDIR"
-  echo "DOTFILES_INSTALLDIR=$DOTFILES_INSTALLDIR" > "$DOTDIR/.my-dotfiles.env"
+  dotfiles_init
 
   # clone if needed
   if [[ ! -d $DOTFILES_INSTALLDIR ]]; then

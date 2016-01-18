@@ -9,9 +9,23 @@ removed for installation to work properly.*
 - `curl https://raw.githubusercontent.com/Sut3kh/dotfiles/master/install.sh | sh`
 - run `dotfiles_apm-install` to install recommended atom modules
 
+### Custom install path
+
+- clone repo to desired location
+- run `install.sh --local`
+
 Uninstallation
 ---------------
 
 **NOTE:** *Files not replaced by install might be removed if they are symlinks.*
 
 - run uninstall.sh
+
+Move Installation
+------------------
+
+```
+$DOTFILES_INSTALLDIR/uninstall.sh
+mv $DOTFILES_INSTALLDIR /new/installation/path
+/new/installation/path/install.sh --local
+```
