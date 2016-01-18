@@ -1,0 +1,30 @@
+"*":
+  "atom-ctags":
+    cmdArgs: "--exclude=*.yml --exclude=*.json --exclude=*.md"
+  "autocomplete-plus":
+    confirmCompletion: "tab"
+  core:
+    destroyEmptyPanes: false
+    excludeVcsIgnoredPaths: false
+  drupal:
+    fileTypesPhp: "module,install,inc,test"
+  editor:
+    invisibles: {}
+    scrollPastEnd: true
+    showIndentGuide: true
+  "exception-reporting":
+    userId: "9eb2f426-77fc-b973-426c-456db51c8d21"
+  "find-and-replace":
+    scrollToResultOnLiveSearch: true
+  "fuzzy-finder": {}
+  "git-plus": {}
+  "git-status": {}
+  linter: {}
+  "linter-eslint": {}
+  "linter-php": {}
+  minimap:
+    absoluteMode: true
+  tabs:
+    usePreviewTabs: true
+  welcome:
+    showOnStartup: false

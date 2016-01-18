@@ -1,0 +1,12 @@
+atom-autocomplete-php
+drupal
+git-status
+language-docker
+linter
+linter-eslint
+linter-php
+minimap
+php-twig
+simple-drag-drop-text
+slack-ui
+todo-show
