@@ -30,8 +30,10 @@ DOTDIR=${ZDOTDIR:-$HOME}
 # allow custom install path (i.e. dev)
 if [[ $1 = '--local' ]]; then
   DOTFILES_INSTALLDIR="$(cd "$(dirname "$0")"; pwd -P)"
-else
-  DOTFILES_INSTALLDIR=${DOTFILES_INSTALLDIR:-$DOTDIR/.my-dotfiles}
+# check for existing installation
+elif [[ -f "$DOTDIR/.my-dotfiles.env" ]]; then
+  source "$DOTDIR/.my-dotfiles.env"
+  rm "$DOTDIR/.my-dotfiles.env"
 fi
 
 # work from home

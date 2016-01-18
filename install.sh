@@ -9,12 +9,24 @@ set -e
 
 DOTDIR=${ZDOTDIR:-$HOME}
 
-# allow custom install path (i.e. dev)
+# allow custom install path (i.e. for dev)
 if [[ $1 = '--local' ]]; then
   DOTFILES_INSTALLDIR="$(cd "$(dirname "$0")"; pwd -P)"
+# check for existing installation
+elif [[ -f "$DOTDIR/.my-dotfiles.env" ]]; then
+  source "$DOTDIR/.my-dotfiles.env"
+# init
 else
   DOTFILES_INSTALLDIR=${DOTFILES_INSTALLDIR:-$DOTDIR/.my-dotfiles}
-  git clone git@github.com:Sut3kh/dotfiles.git "$DOTFILES_INSTALLDIR"
+
+  # create .env
+  echo "installing dotfiles into $DOTFILES_INSTALLDIR"
+  echo "DOTFILES_INSTALLDIR=$DOTFILES_INSTALLDIR" > "$DOTDIR/.my-dotfiles.env"
+
+  # clone if needed
+  if [[ ! -d $DOTFILES_INSTALLDIR ]]; then
+    git clone git@github.com:Sut3kh/dotfiles.git "$DOTFILES_INSTALLDIR"
+  fi
 fi
 
 # ensure submodules are installed
