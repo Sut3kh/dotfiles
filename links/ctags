@@ -1,2 +1,19 @@
 -R
 -f .tags
+--totals
+
+--langmap=php:.engine.inc.module.theme.install.php
+--php-kinds=cdfi
+--JavaScript-kinds=fcmvp
+
+--langdef=Yaml
+--langmap=Yaml:.yaml
+--langmap=Yaml:+.yml
+--regex-Yaml=/^[ \t]*([a-zA-Z_0-9 ]+)[ \t]*\:[ \t]*/\1/f,function/
+
+--exclude=*.git/*
+--exclude=*sites/default/files/*
+--exclude=*vendor/*
+--exclude=*node_modules/*
+--exclude=*bower_components/*
+--exclude=*.sql
