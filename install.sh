@@ -53,11 +53,11 @@ else
   if [[ ! -d $DOTFILES_INSTALLDIR ]]; then
     git clone git@github.com:Sut3kh/dotfiles.git "$DOTFILES_INSTALLDIR"
   fi
-fi
 
-# ensure submodules are installed
-cd "$DOTFILES_INSTALLDIR"
-git submodule update --init --recursive
+  # ensure submodules are installed
+  cd "$DOTFILES_INSTALLDIR"
+  git submodule update --init --recursive
+fi
 
 # work from home
 cd "$DOTDIR"
