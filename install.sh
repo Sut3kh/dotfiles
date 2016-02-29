@@ -79,6 +79,9 @@ for rcfile in "$DOTFILES_INSTALLDIR"/links/*; do
   lnsafe "$rcfile" "$DOTDIR/.${rcfile:t}"
 done
 
+# set git config
+git config --global core.excludesfile ~/.gitignore_global
+
 # change shell to zsh
 chsh -s /bin/zsh
 
