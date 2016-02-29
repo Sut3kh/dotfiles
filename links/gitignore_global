@@ -6,3 +6,6 @@ Thumbs.db
 
 # ctags
 .tags
+
+# safe area
+gitignored/*
